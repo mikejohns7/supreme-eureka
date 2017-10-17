@@ -1,9 +1,12 @@
 class Link < ApplicationRecord
-    enum type: [:multi, :single, :secure]
     has_many :visits
 
     before_create {
-        self.visits = 0
+        self.code = Link.new_random_string
     }
+
+    def self.new_random_string
+        SecureRandom.hex(4)
+    end
 
 end

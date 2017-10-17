@@ -10,28 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017045018) do
+ActiveRecord::Schema.define(version: 20171017052753) do
 
   create_table "links", force: :cascade do |t|
     t.string "code"
     t.integer "is_active"
-    t.integer "type"
-    t.integer "visits"
+    t.integer "is_single_use"
     t.string "destination"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "is_secure"
     t.index ["code"], name: "index_links_on_code"
   end
 
   create_table "visits", force: :cascade do |t|
     t.string "host"
-    t.string "date"
     t.string "referer"
     t.string "agent"
     t.integer "dnt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "link_id"
+    t.string "original_url"
     t.index ["link_id"], name: "index_visits_on_link_id"
   end
 
